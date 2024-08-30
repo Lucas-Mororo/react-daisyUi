@@ -1,32 +1,53 @@
 import React from 'react';
-import NavBar from '../../components/NavBar';
-import Tabela from '../../components/Tabela';
-import DialogCadastroItens from '../../components/Dialog/Cadastros/Itens';
-import DialogCadastroOs from '../../components/Dialog/Cadastros/Os';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 
-export default function Home() {
+// Registre os componentes necessários do Chart.js
+ChartJS.register(ArcElement, Tooltip, Legend, Title);
+
+const Home: React.FC = () => {
+    // Dados do gráfico
+    const data = {
+        labels: ['Red', 'Blue', 'Yellow'],
+        datasets: [
+            {
+                label: 'My First Dataset',
+                data: [10, 20, 30],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    // Opções do gráfico
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top' as const,  // Corrige o problema de tipo
+            },
+            tooltip: {
+                callbacks: {
+                    label: (tooltipItem: any) => `${tooltipItem.label}: ${tooltipItem.raw}`,
+                },
+            },
+        },
+    };
 
     return (
-        <>
-            {/* -------- Botões de Cadastro -------- */}
-            <div className="w-screen p-1 flex justify-center ">
-                <div className="flex justify-end w-4/5">
+        <div className='w-64 h-64'>
+            <Pie data={data} options={options} />
+        </div>
+    );
+};
 
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn m-1 btn-primary">Cadastro</div>
-                        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                            <li><a href="#my_modal_item">Item</a></li>
-                            <li><a href="#my_modal_os">OS</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-            {/* -------- Dialogs de Cadastro -------- */}
-            <DialogCadastroItens />
-            <DialogCadastroOs />
-
-            <Tabela />
-        </>
-    )
-}
+export default Home;

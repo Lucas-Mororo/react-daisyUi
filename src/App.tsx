@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Home from './pages/Home';
 import ErrorPage from './pages/error';
 import Layout from './Layout';
+import OrdemServicos from './pages/ordem-servicos';
+import Estoque from './pages/estoque';
+import Cliente from './pages/clientes';
 
 export default function App() {
 
@@ -14,9 +17,21 @@ export default function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          // index: true, // Esta é a rota padrão para "/"
+          index: true,
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "ordem-servicos",
+          element: <OrdemServicos />,
+        },
+        {
+          path: "estoque",
+          element: <Estoque />,
+        },
+        {
+          path: "cliente",
+          element: <Cliente />,
         },
         {
           path: "*",
