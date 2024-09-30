@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../../components/NavBar';
 import DialogCadastroItens from '../../components/Dialog/Cadastros/Itens';
 import DialogCadastroOs from '../../components/Dialog/Cadastros/Os';
-import TabelaOrdemServicos from '../../components/Tabela/ordem-servicos';
+import TabelaOrdemServicos from '../../components/Tabela/OrdemServicos';
 
 export default function OrdemServicos() {
 

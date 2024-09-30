@@ -1,6 +1,6 @@
 import DialogCadastroItens from '../../components/Dialog/Cadastros/Itens';
 import DialogCadastroOs from '../../components/Dialog/Cadastros/Os';
-import TabelaClientes from '../../components/Tabela/clientes';
+import TabelaClientes from '../../components/Tabela/Clientes';
 
 export default function Cliente() {
 

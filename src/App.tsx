@@ -2,18 +2,18 @@ import React from 'react';
 import './App.css'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Home from './pages/Home';
-import ErrorPage from './pages/error';
+import ErrorPage from './pages/Error';
 import Layout from './Layout';
-import OrdemServicos from './pages/ordem-servicos';
-import Estoque from './pages/estoque';
-import Cliente from './pages/clientes';
+import OrdemServicos from './pages/OrdemServicos';
+import Estoque from './pages/Estoque';
+import Cliente from './pages/Clientes';
 
 export default function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />, // Layout é usado para todas as páginas filhas
+      element: <Layout />,
       errorElement: <ErrorPage />,
       children: [
         {

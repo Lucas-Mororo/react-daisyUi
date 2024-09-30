@@ -3,18 +3,28 @@ import React from 'react';
 export default function NavBar({ drawer, isDrawerOpen }: any) {
     // -------- theme -------- // 
     const [theme, setTheme] = React.useState('dark');
-    const toggleTheme = (value: any) => { setTheme(value); };
-
     const [isChecked, setIsChecked] = React.useState(true);
     const handleToggleTheme = (e: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = e.target.checked;
         setIsChecked(isChecked);
-        if (isChecked) { toggleTheme("dark"); } else { toggleTheme("winter"); }
+        if (isChecked) {
+            localStorage.setItem("theme", "dark")
+            setTheme("dark");
+        } else {
+            localStorage.setItem("theme", "winter")
+            setTheme("winter");
+        }
     };
 
     React.useEffect(() => {
+        const themeLocal: any = localStorage.getItem("theme")
+        setTheme(themeLocal);
+        setIsChecked(themeLocal === "dark" ? true : false);
+
         const htmlElement = document.querySelector('html');
-        if (htmlElement) htmlElement.setAttribute('data-theme', theme);
+        if (htmlElement)
+            htmlElement.setAttribute('data-theme', themeLocal ? themeLocal : theme);
+
     }, [theme]);
     // -------- theme -------- // 
 
